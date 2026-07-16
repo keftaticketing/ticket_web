@@ -1,0 +1,12 @@
+# Local testing only. Production deploy uses compose on the server (not this file).
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        API_URL: ${API_URL:-https://YOUR_API_HOST/api}
+        CLIENT_ID: ${CLIENT_ID:-ticket-admin}
+        CLIENT_KEY: ${CLIENT_KEY:-YOUR_CLIENT_KEY}
+    ports:
+      - "${PORT:-8080}:80"
