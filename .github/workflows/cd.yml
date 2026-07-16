@@ -33,6 +33,10 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            API_URL=${{ secrets.API_URL }}
+            CLIENT_ID=${{ secrets.CLIENT_ID }}
+            CLIENT_KEY=${{ secrets.CLIENT_KEY }}
           tags: |
             ghcr.io/${{ env.REPO_OWNER_LOWER }}/ticket-system-web:latest
             ghcr.io/${{ env.REPO_OWNER_LOWER }}/ticket-system-web:${{ github.sha }}
