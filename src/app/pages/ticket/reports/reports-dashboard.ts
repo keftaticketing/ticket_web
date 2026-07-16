@@ -83,13 +83,7 @@ interface ReportFilterModel {
                                 <td>{{ row.ticketFareEtb | number: '1.2-2' }}</td>
                                 <td>{{ row.totalCashCollectedEtb | number: '1.2-2' }}</td>
                                 <td>
-                                    <a
-                                        [routerLink]="['/ticket/tickets']"
-                                        [queryParams]="{ date: row.date }"
-                                        class="text-primary font-medium no-underline hover:underline"
-                                    >
-                                        View tickets
-                                    </a>
+                                    <a [routerLink]="['/ticket/tickets']" [queryParams]="{ date: row.date }" class="text-primary font-medium no-underline hover:underline"> View tickets </a>
                                 </td>
                             </tr>
                         </ng-template>

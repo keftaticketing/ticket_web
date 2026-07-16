@@ -11,13 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { firstValueFrom } from 'rxjs';
-import {
-    CreateSalesPartyRequest,
-    SALES_PARTY_ALLOCATION_TYPES,
-    SALES_PARTY_SOURCES,
-    SalesParty,
-    UpdateSalesPartyRequest
-} from '@/app/core/models/api.models';
+import { CreateSalesPartyRequest, SALES_PARTY_ALLOCATION_TYPES, SALES_PARTY_SOURCES, SalesParty, UpdateSalesPartyRequest } from '@/app/core/models/api.models';
 import { TicketApiService } from '@/app/core/services/ticket-api.service';
 import { FieldErrors } from '@/app/shared/components/field-errors';
 import { getApiErrorMessage } from '@/app/shared/utils/api-error';

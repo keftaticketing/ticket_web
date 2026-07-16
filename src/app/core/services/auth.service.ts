@@ -3,13 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom, tap } from 'rxjs';
 import { environment } from '@/environments/environment';
-import {
-    AuthTokenResponse,
-    ChangePasswordRequest,
-    LoginRequest,
-    LoginResponse,
-    LogoutRequest
-} from '@/app/core/models/api.models';
+import { AuthTokenResponse, ChangePasswordRequest, LoginRequest, LoginResponse, LogoutRequest } from '@/app/core/models/api.models';
 
 const TOKEN_KEY = 'ticket_access_token';
 const REFRESH_TOKEN_KEY = 'ticket_refresh_token';
@@ -34,9 +28,7 @@ export class AuthService {
     readonly mustChangePassword = computed(() => this.userSignal()?.mustChangePassword === true);
 
     login(request: LoginRequest) {
-        return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, request).pipe(
-            tap((response) => this.applySession(response))
-        );
+        return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, request).pipe(tap((response) => this.applySession(response)));
     }
 
     async loginAsync(request: LoginRequest) {
@@ -44,9 +36,7 @@ export class AuthService {
     }
 
     changePassword(request: ChangePasswordRequest) {
-        return this.http.post<AuthTokenResponse>(`${environment.apiUrl}/auth/change-password`, request).pipe(
-            tap((response) => this.applySession(response))
-        );
+        return this.http.post<AuthTokenResponse>(`${environment.apiUrl}/auth/change-password`, request).pipe(tap((response) => this.applySession(response)));
     }
 
     async changePasswordAsync(request: ChangePasswordRequest) {
