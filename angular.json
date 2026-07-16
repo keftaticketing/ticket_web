@@ -112,13 +112,8 @@
                     "options": {
                         "tsConfig": "tsconfig.spec.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": [
-                            "src/favicon.ico",
-                            "src/assets"
-                        ],
-                        "styles": [
-                            "src/assets/styles.scss"
-                        ],
+                        "assets": [],
+                        "styles": [],
                         "scripts": []
                     }
                 }
