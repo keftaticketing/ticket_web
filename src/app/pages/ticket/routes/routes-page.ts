@@ -129,10 +129,7 @@ export class RoutesPage implements OnInit {
     async loadData() {
         this.loading.set(true);
         try {
-            const [routes, cities] = await Promise.all([
-                firstValueFrom(this.api.getRoutes()),
-                firstValueFrom(this.api.getCities())
-            ]);
+            const [routes, cities] = await Promise.all([firstValueFrom(this.api.getRoutes()), firstValueFrom(this.api.getCities())]);
             this.routes.set(routes);
             this.destinationCities.set(cities.filter((c) => c.distanceFromAddisKm > 0));
             this.stationOptions.set(this.collectStations(routes));

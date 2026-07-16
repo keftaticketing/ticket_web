@@ -43,9 +43,7 @@ interface TicketFilterModel {
                 <select class="w-full p-inputtext" [field]="filterForm.scheduleId">
                     <option value="">Any schedule</option>
                     @for (schedule of schedules(); track schedule.id) {
-                        <option [value]="schedule.id">
-                            {{ schedule.fromCity }} → {{ schedule.toCity }} — {{ schedule.departureAt | date: 'short' }} (#{{ schedule.sequenceNumber }})
-                        </option>
+                        <option [value]="schedule.id">{{ schedule.fromCity }} → {{ schedule.toCity }} — {{ schedule.departureAt | date: 'short' }} (#{{ schedule.sequenceNumber }})</option>
                     }
                 </select>
             </div>
@@ -142,15 +140,7 @@ export class Tickets implements OnInit {
         try {
             await submit(this.filterForm, async () => {
                 const filters = this.filterModel();
-                this.tickets.set(
-                    await firstValueFrom(
-                        this.api.searchTickets(
-                            filters.scheduleId || undefined,
-                            filters.passengerPhone || undefined,
-                            filters.date || undefined
-                        )
-                    )
-                );
+                this.tickets.set(await firstValueFrom(this.api.searchTickets(filters.scheduleId || undefined, filters.passengerPhone || undefined, filters.date || undefined)));
             });
         } catch (error) {
             this.messages.add({ severity: 'error', summary: 'Error', detail: getApiErrorMessage(error) });

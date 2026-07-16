@@ -143,10 +143,7 @@ export class Stations implements OnInit {
         this.loading.set(true);
         try {
             const cityId = this.selectedCityId() || undefined;
-            const [stations, cities] = await Promise.all([
-                firstValueFrom(this.api.getStations(cityId)),
-                firstValueFrom(this.api.getCities())
-            ]);
+            const [stations, cities] = await Promise.all([firstValueFrom(this.api.getStations(cityId)), firstValueFrom(this.api.getCities())]);
             this.stations.set(stations);
             this.cities.set(cities);
         } catch (error) {

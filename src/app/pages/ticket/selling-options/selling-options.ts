@@ -84,12 +84,7 @@ interface SellingOptionFilterModel {
             </ng-template>
         </p-table>
 
-        <p-dialog
-            [(visible)]="scheduleDialogVisible"
-            [header]="selectedOptionLabel()"
-            [modal]="true"
-            [style]="{ width: '760px' }"
-        >
+        <p-dialog [(visible)]="scheduleDialogVisible" [header]="selectedOptionLabel()" [modal]="true" [style]="{ width: '760px' }">
             <p-table [value]="optionSchedules()" [loading]="loadingSchedules()" dataKey="scheduleId">
                 <ng-template #header>
                     <tr>

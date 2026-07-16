@@ -19,11 +19,7 @@ export class ReferenceDataService {
         }
 
         try {
-            const [associations, busLevels, busTypes] = await Promise.all([
-                firstValueFrom(this.api.getAssociations()),
-                firstValueFrom(this.api.getBusLevels()),
-                firstValueFrom(this.api.getBusTypes())
-            ]);
+            const [associations, busLevels, busTypes] = await Promise.all([firstValueFrom(this.api.getAssociations()), firstValueFrom(this.api.getBusLevels()), firstValueFrom(this.api.getBusTypes())]);
 
             this.associations.set(
                 associations
@@ -44,10 +40,7 @@ export class ReferenceDataService {
                     .sort((a, b) => a.name.localeCompare(b.name))
             );
         } catch {
-            const [buses, tariffs] = await Promise.all([
-                firstValueFrom(this.api.getBuses()),
-                firstValueFrom(this.api.getActiveTariffs()).catch(() => [])
-            ]);
+            const [buses, tariffs] = await Promise.all([firstValueFrom(this.api.getBuses()), firstValueFrom(this.api.getActiveTariffs()).catch(() => [])]);
 
             const associationMap = new Map<string, AssociationRef>();
             const levelMap = new Map<string, BusLevelRef>();

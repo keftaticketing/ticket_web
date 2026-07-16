@@ -28,9 +28,7 @@ interface ChangePasswordFormModel {
                     <div class="w-full bg-surface-0 dark:bg-surface-900 py-16 px-8 sm:px-20" style="border-radius: 53px; min-width: 28rem">
                         <div class="text-center mb-8">
                             <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4">Change Your Password</div>
-                            <span class="text-muted-color font-medium">
-                                For security, you must set a new password before using the admin portal.
-                            </span>
+                            <span class="text-muted-color font-medium"> For security, you must set a new password before using the admin portal. </span>
                         </div>
 
                         @if (serverError()) {
@@ -38,60 +36,21 @@ interface ChangePasswordFormModel {
                         }
 
                         <form (submit)="onSubmit($event)">
-                            <label for="currentPassword" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">
-                                Current Password
-                            </label>
-                            <p-password
-                                id="currentPassword"
-                                placeholder="Current password"
-                                [toggleMask]="true"
-                                styleClass="mb-2 w-full"
-                                [fluid]="true"
-                                [feedback]="false"
-                                [field]="changePasswordForm.currentPassword"
-                            />
+                            <label for="currentPassword" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2"> Current Password </label>
+                            <p-password id="currentPassword" placeholder="Current password" [toggleMask]="true" styleClass="mb-2 w-full" [fluid]="true" [feedback]="false" [field]="changePasswordForm.currentPassword" />
                             <app-field-errors [field]="changePasswordForm.currentPassword" />
 
-                            <label for="newPassword" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2 mt-4">
-                                New Password
-                            </label>
-                            <p-password
-                                id="newPassword"
-                                placeholder="New password"
-                                [toggleMask]="true"
-                                styleClass="mb-2 w-full"
-                                [fluid]="true"
-                                [feedback]="true"
-                                [field]="changePasswordForm.newPassword"
-                            />
+                            <label for="newPassword" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2 mt-4"> New Password </label>
+                            <p-password id="newPassword" placeholder="New password" [toggleMask]="true" styleClass="mb-2 w-full" [fluid]="true" [feedback]="true" [field]="changePasswordForm.newPassword" />
                             <app-field-errors [field]="changePasswordForm.newPassword" />
-                            <p class="text-muted-color text-sm mt-1 mb-0">
-                                At least 8 characters with uppercase, lowercase, digit, and special character.
-                            </p>
+                            <p class="text-muted-color text-sm mt-1 mb-0">At least 8 characters with uppercase, lowercase, digit, and special character.</p>
 
-                            <label for="confirmPassword" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2 mt-4">
-                                Confirm New Password
-                            </label>
-                            <p-password
-                                id="confirmPassword"
-                                placeholder="Confirm new password"
-                                [toggleMask]="true"
-                                styleClass="mb-2 w-full"
-                                [fluid]="true"
-                                [feedback]="false"
-                                [field]="changePasswordForm.confirmPassword"
-                            />
+                            <label for="confirmPassword" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2 mt-4"> Confirm New Password </label>
+                            <p-password id="confirmPassword" placeholder="Confirm new password" [toggleMask]="true" styleClass="mb-2 w-full" [fluid]="true" [feedback]="false" [field]="changePasswordForm.confirmPassword" />
                             <app-field-errors [field]="changePasswordForm.confirmPassword" />
 
                             <p-button type="submit" label="Update Password" styleClass="w-full mt-6" [loading]="submitting()" />
-                            <p-button
-                                type="button"
-                                label="Sign out"
-                                severity="secondary"
-                                styleClass="w-full mt-3"
-                                [text]="true"
-                                (onClick)="auth.logout()"
-                            />
+                            <p-button type="button" label="Sign out" severity="secondary" styleClass="w-full mt-3" [text]="true" (onClick)="auth.logout()" />
                         </form>
                     </div>
                 </div>
