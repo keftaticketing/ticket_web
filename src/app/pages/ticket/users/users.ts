@@ -12,14 +12,7 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { firstValueFrom } from 'rxjs';
-import {
-    CreateTicketerRequest,
-    CreateUserStationAssignmentRequest,
-    Route,
-    RouteStation,
-    UserStationAssignment,
-    UserSummary
-} from '@/app/core/models/api.models';
+import { CreateTicketerRequest, CreateUserStationAssignmentRequest, Route, RouteStation, UserStationAssignment, UserSummary } from '@/app/core/models/api.models';
 import { TicketApiService } from '@/app/core/services/ticket-api.service';
 import { FieldErrors } from '@/app/shared/components/field-errors';
 import { passwordPolicy } from '@/app/shared/validators/password.validators';
@@ -41,20 +34,7 @@ interface StationAssignmentFormModel {
     selector: 'app-users',
     standalone: true,
     providers: [ConfirmationService, MessageService],
-    imports: [
-        CommonModule,
-        TableModule,
-        DialogModule,
-        ButtonModule,
-        InputTextModule,
-        PasswordModule,
-        TagModule,
-        ToastModule,
-        ToolbarModule,
-        ConfirmDialogModule,
-        Field,
-        FieldErrors
-    ],
+    imports: [CommonModule, TableModule, DialogModule, ButtonModule, InputTextModule, PasswordModule, TagModule, ToastModule, ToolbarModule, ConfirmDialogModule, Field, FieldErrors],
     template: `
         <p-toast />
         <p-confirmdialog />
@@ -95,13 +75,7 @@ interface StationAssignmentFormModel {
                     </td>
                     <td class="flex gap-2">
                         @if (user.role === 'Ticketer') {
-                            <p-button
-                                icon="pi pi-map-marker"
-                                [rounded]="true"
-                                [outlined]="true"
-                                severity="info"
-                                (onClick)="openStationAssignments(user)"
-                            />
+                            <p-button icon="pi pi-map-marker" [rounded]="true" [outlined]="true" severity="info" (onClick)="openStationAssignments(user)" />
                             <p-button
                                 [label]="user.isActive ? 'Deactivate' : 'Activate'"
                                 [icon]="user.isActive ? 'pi pi-ban' : 'pi pi-check'"
@@ -152,12 +126,7 @@ interface StationAssignmentFormModel {
             </form>
         </p-dialog>
 
-        <p-dialog
-            [(visible)]="stationDialogVisible"
-            [header]="'Station assignments — ' + (selectedUser()?.username ?? '')"
-            [modal]="true"
-            [style]="{ width: '720px' }"
-        >
+        <p-dialog [(visible)]="stationDialogVisible" [header]="'Station assignments — ' + (selectedUser()?.username ?? '')" [modal]="true" [style]="{ width: '720px' }">
             @if (selectedUser(); as user) {
                 <form (submit)="assignStation($event)" class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end mb-4">
                     <div class="md:col-span-2">
@@ -195,15 +164,7 @@ interface StationAssignmentFormModel {
                             </td>
                             <td>
                                 @if (row.isActive) {
-                                    <p-button
-                                        icon="pi pi-times"
-                                        severity="danger"
-                                        [rounded]="true"
-                                        [outlined]="true"
-                                        size="small"
-                                        [loading]="endingAssignmentId() === row.assignmentId"
-                                        (onClick)="confirmEndAssignment(user, row)"
-                                    />
+                                    <p-button icon="pi pi-times" severity="danger" [rounded]="true" [outlined]="true" size="small" [loading]="endingAssignmentId() === row.assignmentId" (onClick)="confirmEndAssignment(user, row)" />
                                 }
                             </td>
                         </tr>
@@ -316,9 +277,7 @@ export class Users implements OnInit {
     confirmToggleActive(user: UserSummary) {
         const activating = !user.isActive;
         this.confirmation.confirm({
-            message: activating
-                ? `Activate ticketer "${user.username}"?`
-                : `Deactivate ticketer "${user.username}"? They will be signed out and cannot sell tickets.`,
+            message: activating ? `Activate ticketer "${user.username}"?` : `Deactivate ticketer "${user.username}"? They will be signed out and cannot sell tickets.`,
             header: activating ? 'Activate User' : 'Deactivate User',
             icon: activating ? 'pi pi-check-circle' : 'pi pi-exclamation-triangle',
             accept: () => void this.toggleActive(user, activating)

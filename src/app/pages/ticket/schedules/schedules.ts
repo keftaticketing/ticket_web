@@ -10,14 +10,7 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { firstValueFrom } from 'rxjs';
-import {
-    Bus,
-    CreateScheduleRequest,
-    Route,
-    SCHEDULE_STATUSES,
-    Schedule,
-    UpdateScheduleRequest
-} from '@/app/core/models/api.models';
+import { Bus, CreateScheduleRequest, Route, SCHEDULE_STATUSES, Schedule, UpdateScheduleRequest } from '@/app/core/models/api.models';
 import { TicketApiService } from '@/app/core/services/ticket-api.service';
 import { FieldErrors } from '@/app/shared/components/field-errors';
 import { getApiErrorMessage } from '@/app/shared/utils/api-error';
@@ -114,9 +107,7 @@ interface ScheduleFilterModel {
                         <select class="w-full p-inputtext" [field]="scheduleForm.busId">
                             <option value="">Select bus</option>
                             @for (bus of buses(); track bus.id) {
-                                <option [value]="bus.id">
-                                    {{ bus.plateNumber }} — {{ bus.busLevel.code }}/{{ bus.busType.code }} ({{ bus.seatCount }} seats)
-                                </option>
+                                <option [value]="bus.id">{{ bus.plateNumber }} — {{ bus.busLevel.code }}/{{ bus.busType.code }} ({{ bus.seatCount }} seats)</option>
                             }
                         </select>
                         <app-field-errors [field]="scheduleForm.busId" />
@@ -186,11 +177,7 @@ export class Schedules implements OnInit {
         this.loading.set(true);
         try {
             const filters = this.filterModel();
-            const [schedules, routes, buses] = await Promise.all([
-                firstValueFrom(this.api.getSchedules(filters.routeId || undefined, filters.date || undefined)),
-                firstValueFrom(this.api.getRoutes()),
-                firstValueFrom(this.api.getBuses())
-            ]);
+            const [schedules, routes, buses] = await Promise.all([firstValueFrom(this.api.getSchedules(filters.routeId || undefined, filters.date || undefined)), firstValueFrom(this.api.getRoutes()), firstValueFrom(this.api.getBuses())]);
             this.schedules.set(schedules);
             this.routes.set(routes.filter((r) => r.isActive));
             this.buses.set(buses.filter((b) => b.isActive));

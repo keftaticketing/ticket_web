@@ -147,10 +147,7 @@ export class Tariffs implements OnInit {
         this.loading.set(true);
         try {
             await this.reference.ensureLoaded();
-            const [active, history] = await Promise.all([
-                firstValueFrom(this.api.getActiveTariffs()),
-                firstValueFrom(this.api.getTariffHistory())
-            ]);
+            const [active, history] = await Promise.all([firstValueFrom(this.api.getActiveTariffs()), firstValueFrom(this.api.getTariffHistory())]);
             this.activeTariffs.set(active);
             this.history.set(history);
         } catch (error) {
